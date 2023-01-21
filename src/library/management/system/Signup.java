@@ -333,7 +333,7 @@ public class Signup extends javax.swing.JFrame {
         
         try {
             con = DatabaseHelper.getConnection();
-            String sql = "insert into account"+"(USERNAME,PASSWORD,NAME,QUESTION,ANSWER)"+ "values (?,?,?,?,?)";
+            String sql = "insert into account (USERNAME,PASSWORD,NAME,QUESTION,ANSWER) values (?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
             
             ps.setString(1,username);
@@ -409,7 +409,27 @@ public class Signup extends javax.swing.JFrame {
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         if(validateSignUp() == true ){
             if(checkDuplicate() == false){
-            insertSignUp();
+            
+            try {
+                String sql = "insert into account"
+                        +"(username, name, password, question, answer) "
+                        + "values (?,?,?,?,?)";
+                ps = con.prepareStatement(sql);
+                ps.setString(1, txtuname.getText());
+                ps.setString(2, txtname.getText());
+                ps.setString(3, txtpassword.getText());
+                ps.setString(4, (String) cmbsqes.getSelectedItem());
+                ps.setString(5, txtans.getText());
+                ps.execute();
+                JOptionPane.showMessageDialog(null, "New account created");
+                Login lo = new Login();
+                lo.setVisible(true);
+                this.dispose();
+    //            rs.close();
+    //            ps.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }          
         }else{
                 JOptionPane.showMessageDialog(null, "Username already Exists");
             }    
