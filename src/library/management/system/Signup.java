@@ -5,10 +5,12 @@
 package library.management.system;
 
 import DAO.DatabaseHelper;
+import java.sql.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
@@ -71,6 +73,7 @@ public class Signup extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(500, 500));
@@ -145,7 +148,8 @@ public class Signup extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("PASSWORD");
 
-        txtname.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        txtname.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtname.setToolTipText("");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -188,6 +192,11 @@ public class Signup extends javax.swing.JFrame {
         });
 
         txtuname.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        txtuname.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtunameFocusLost(evt);
+            }
+        });
         txtuname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtunameActionPerformed(evt);
@@ -208,6 +217,9 @@ public class Signup extends javax.swing.JFrame {
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/answer.png"))); // NOI18N
         jLabel19.setText("jLabel19");
+
+        jLabel20.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel20.setText("*(Max 12 characters)");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -230,21 +242,26 @@ public class Signup extends javax.swing.JFrame {
                                 .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(17, 17, 17)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(txtuname, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)
-                            .addComponent(cmbsqes, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(txtans, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(txtuname, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel20))
+                                    .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8)
+                                    .addComponent(cmbsqes, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(txtans, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(65, 65, 65))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -274,7 +291,9 @@ public class Signup extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel17)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel20))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(37, 37, 37)
@@ -295,7 +314,7 @@ public class Signup extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 0, 590, 830));
@@ -303,30 +322,101 @@ public class Signup extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+    
+    // account creation
+    
+    public void insertSignUp(){
+        String username = txtuname.getText();
+        String name = txtname.getText();
+        String password = txtpassword.getText();
+        String answer = txtans.getText();
+        
         try {
-            String sql = "insert into account"
-            +"(username, name, password, security_ques, answer) "
-            + "values (?,?,?,?,?)";
-            ps = con.prepareStatement(sql);
-            ps.setString(1, txtuname.getText());
-            ps.setString(2, txtname.getText());
-            ps.setString(3, txtpassword.getText());
-            ps.setString(4, (String) cmbsqes.getSelectedItem());
-            ps.setString(5, txtans.getText());
-            ps.execute();
-            JOptionPane.showMessageDialog(null, "New account created");
-            Login lo = new Login();
-            lo.setVisible(true);
-            this.dispose();
-            //            rs.close();
-            //            ps.close();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            con = DatabaseHelper.getConnection();
+            String sql = "insert into account"+"(USERNAME,PASSWORD,NAME,QUESTION,ANSWER)"+ "values (?,?,?,?,?)";
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            ps.setString(1,username);
+            ps.setString(2,name);
+            ps.setString(3,password);
+            ps.setString(4,answer);
+            
+            int updateRowCount = ps.executeUpdate();
+            
+            if(updateRowCount > 0) {
+                JOptionPane.showMessageDialog(null, "New Account Created Successfully");
+            }else{
+                JOptionPane.showMessageDialog(null, "New Account Creation Failure");
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public boolean validateSignUp(){
+        
+        String username = txtuname.getText();
+        String name = txtname.getText();
+        String password = txtpassword.getText();
+        String answer = txtans.getText();
+        
+        if (username.equals("")){
+            JOptionPane.showMessageDialog(null, "Please Enter Username");
+            return false;
+        }
+        if (name.equals("")){
+            JOptionPane.showMessageDialog(null, "Please Enter Name");
+            return false;
+        }
+        if (password.equals("")){
+            JOptionPane.showMessageDialog(null, "Please Enter Password");
+            return false;
+        }
+        if (answer.equals("")){
+            JOptionPane.showMessageDialog(null, "Please Enter Security Question Answer");
+            return false;
+        }
+        return true;
+    }
+    
+    //check for duplicate username/password
+    public boolean checkDuplicate(){
+        String username = txtuname.getText();
+        String password = txtpassword.getText();
+        boolean isExist = false;
+        
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_management","root","");
+            PreparedStatement ps = con.prepareStatement("select * from account where USERNAME=? AND PASSWORD=?");
+            
+            ps.setString(1,username);
+            ps.setString(1,password);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()){
+                isExist = true;
+            }else{
+                isExist = false;
+            }
+            
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return isExist;
+    }
+    
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        if(validateSignUp() == true ){
+            if(checkDuplicate() == false){
+            insertSignUp();
+        }else{
+                JOptionPane.showMessageDialog(null, "Username already Exists");
+            }    
         }
     }//GEN-LAST:event_btnCreateActionPerformed
-
+        
+    
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
         Login lo = new Login();
         lo.setVisible(true);
@@ -344,6 +434,12 @@ public class Signup extends javax.swing.JFrame {
     private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtpasswordActionPerformed
+
+    private void txtunameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtunameFocusLost
+        if(checkDuplicate() == true){
+            JOptionPane.showMessageDialog(null, "Username already Exists");
+        }
+    }//GEN-LAST:event_txtunameFocusLost
 
     /**
      * @param args the command line arguments
@@ -397,6 +493,7 @@ public class Signup extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
