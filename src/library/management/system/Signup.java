@@ -137,7 +137,7 @@ public class Signup extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("USERNAME");
 
-        txtpassword.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        txtpassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtpassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtpasswordActionPerformed(evt);
@@ -155,13 +155,13 @@ public class Signup extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("SECURITY QUESTION");
 
-        txtans.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        txtans.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("ANSWER");
 
-        cmbsqes.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        cmbsqes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cmbsqes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "What is your mother toungue?", "What is your nick name?", "What is your first childhood friend?", "What is your school name?" }));
         cmbsqes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,7 +191,7 @@ public class Signup extends javax.swing.JFrame {
             }
         });
 
-        txtuname.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        txtuname.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtuname.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtunameFocusLost(evt);
@@ -314,7 +314,7 @@ public class Signup extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 0, 590, 830));
@@ -322,37 +322,8 @@ public class Signup extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
-    // account creation
-    
-    public void insertSignUp(){
-        String username = txtuname.getText();
-        String name = txtname.getText();
-        String password = txtpassword.getText();
-        String answer = txtans.getText();
-        
-        try {
-            con = DatabaseHelper.getConnection();
-            String sql = "insert into account (USERNAME,PASSWORD,NAME,QUESTION,ANSWER) values (?,?,?,?,?)";
-            PreparedStatement ps = con.prepareStatement(sql);
-            
-            ps.setString(1,username);
-            ps.setString(2,name);
-            ps.setString(3,password);
-            ps.setString(4,answer);
-            
-            int updateRowCount = ps.executeUpdate();
-            
-            if(updateRowCount > 0) {
-                JOptionPane.showMessageDialog(null, "New Account Created Successfully");
-            }else{
-                JOptionPane.showMessageDialog(null, "New Account Creation Failure");
-            }
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
+   
+    //validation
     public boolean validateSignUp(){
         
         String username = txtuname.getText();
