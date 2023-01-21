@@ -3,10 +3,13 @@ package library.management.system;
 import DAO.DatabaseHelper;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.print.PrinterException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -55,7 +58,7 @@ public final class Record extends javax.swing.JFrame {
          public void tableLoan(){
              
             try {
-                String sql = "select * from student";
+                String sql = "select * from issuebook";
                 ps = con.prepareStatement(sql);
                 rs = ps.executeQuery();
                 tableLoan.setModel(DbUtils.resultSetToTableModel(rs));
@@ -348,15 +351,27 @@ public final class Record extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButtonPrintLoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrintLoanActionPerformed
-        // TODO add your handling code here:
+        try {
+            tableLoan.print();
+        } catch (PrinterException ex) {
+            Logger.getLogger(Record.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonPrintLoanActionPerformed
 
     private void jButtonPrintStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrintStudentActionPerformed
-        // TODO add your handling code here:
+        try {
+            tableStudent.print();
+        } catch (PrinterException ex) {
+            Logger.getLogger(Record.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonPrintStudentActionPerformed
 
     private void jButtonPrintBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrintBookActionPerformed
-        // TODO add your handling code here:
+        try {
+            tableBook.print();
+        } catch (PrinterException ex) {
+            Logger.getLogger(Record.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonPrintBookActionPerformed
 
 
