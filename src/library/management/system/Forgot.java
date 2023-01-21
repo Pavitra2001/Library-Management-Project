@@ -146,7 +146,7 @@ public class Forgot extends javax.swing.JFrame {
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/username.png"))); // NOI18N
         jLabel15.setText("jLabel3");
 
-        txtuname.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txtuname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         btnsearch.setBackground(new java.awt.Color(255, 204, 0));
         btnsearch.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
@@ -163,10 +163,10 @@ public class Forgot extends javax.swing.JFrame {
         jLabel17.setText("Name");
 
         txtname.setEditable(false);
-        txtname.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txtname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         txtsques.setEditable(false);
-        txtsques.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txtsques.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         btnretrive.setBackground(new java.awt.Color(255, 204, 0));
         btnretrive.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
@@ -185,10 +185,10 @@ public class Forgot extends javax.swing.JFrame {
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Answer");
 
-        txtanswer.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txtanswer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         txtpassword.setEditable(false);
-        txtpassword.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txtpassword.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -331,7 +331,7 @@ public class Forgot extends javax.swing.JFrame {
 //                rs.close();
 //                ps.close();
             }else{
-                JOptionPane.showMessageDialog(null, "Incorrect Username");
+                JOptionPane.showMessageDialog(null, "Please Enter Password");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
