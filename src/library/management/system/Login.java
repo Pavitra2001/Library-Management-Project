@@ -113,7 +113,9 @@ public class Login extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("PASSWORD");
 
-        txtuname.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txtuname.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        txtpassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         btnlogin.setBackground(new java.awt.Color(255, 153, 0));
         btnlogin.setFont(new java.awt.Font("Tahoma", 1, 21)); // NOI18N
@@ -209,9 +211,9 @@ public class Login extends javax.swing.JFrame {
                 .addGap(58, 58, 58)
                 .addComponent(btnlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnsignup, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(btnsignup, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnforgot, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,25 +240,45 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnforgotActionPerformed
 
+    //validation
+        public boolean validateLogin(){
+        
+        String username = txtuname.getText();
+        String password = txtpassword.getText();
+        
+        if (username.equals("")){
+            JOptionPane.showMessageDialog(null, "Please Enter Username");
+            return false;
+        }
+        if (password.equals("")){
+            JOptionPane.showMessageDialog(null, "Please Enter Password");
+            return false;
+        }
+        return true;
+    }
+        
+    //login
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
-        String sql = "select * from account where username=? and password=?";
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setString(1, txtuname.getText());
-            ps.setString(2, txtpassword.getText());
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                rs.close();
-                ps.close();
-                Dashboard dh = new Dashboard();
-                dh.setVisible(true);
-                this.dispose();
-            }else{
-                JOptionPane.showMessageDialog(null, "Incorrect Username and Password");
+        if(validateLogin() == true ){
+            
+            String sql = "select * from account where username=? and password=?";
+            try {
+                ps = con.prepareStatement(sql);
+                ps.setString(1, txtuname.getText());
+                ps.setString(2, txtpassword.getText());
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    rs.close();
+                    ps.close();
+                    Dashboard dh = new Dashboard();
+                    dh.setVisible(true);
+                    this.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Incorrect Username and Password");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
             }
-            this.dispose();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_btnloginActionPerformed
 
