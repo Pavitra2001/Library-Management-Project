@@ -478,7 +478,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jLabel20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseClicked
     
-        int result = JOptionPane.showConfirmDialog(null,"Do you want to LSog Out?", "Log Out",
+        int result = JOptionPane.showConfirmDialog(null,"Do you want to Log Out?", "Log Out",
                JOptionPane.YES_NO_OPTION,
                JOptionPane.QUESTION_MESSAGE);
             if(result == JOptionPane.YES_OPTION){
