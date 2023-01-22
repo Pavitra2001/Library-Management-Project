@@ -249,18 +249,22 @@ public class ReturnBook extends javax.swing.JFrame {
         //return book
     public boolean returnbook(){
         boolean isReturn = false;
+        int Id, BId, SId;
+        Id = Integer.parseInt (ISSUEID.getText());
+        BId = Integer.parseInt (txtbid.getText());
+        SId = Integer.parseInt (txtsid.getText());
         
         String sql = "update issuebook set STATUS = ? where ISSUEBOOK_ID = ? and B_ID = ? and S_ID = ?";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, "COMPLETED");
-            ps.setString(2, ISSUEID.getText());
-            ps.setString(3, txtbid.getText());
-            ps.setString(4, txtsid.getText());
+            ps.setInt(2, Id);
+            ps.setInt(3, BId);
+            ps.setInt(4, SId);
             rs = ps.executeQuery();
             
             int rowCount = ps.executeUpdate();
-            if (rowCount >= 0){
+            if (rowCount > 0){
                 isReturn = true;
             }else{
                 isReturn = false;
