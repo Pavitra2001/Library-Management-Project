@@ -178,7 +178,10 @@ public final class Record extends javax.swing.JFrame {
             }
         });
         tableBook.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tableBook.setFuenteFilas(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tableBook.setFuenteFilasSelect(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tableBook.setFuenteHead(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        tableBook.setRowHeight(35);
         jScrollPane6.setViewportView(tableBook);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -241,7 +244,10 @@ public final class Record extends javax.swing.JFrame {
             }
         });
         tableStudent.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tableStudent.setFuenteFilas(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tableStudent.setFuenteFilasSelect(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tableStudent.setFuenteHead(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        tableStudent.setRowHeight(35);
         jScrollPane4.setViewportView(tableStudent);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -304,7 +310,10 @@ public final class Record extends javax.swing.JFrame {
             }
         });
         tableLoan.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tableLoan.setFuenteFilas(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tableLoan.setFuenteFilasSelect(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tableLoan.setFuenteHead(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        tableLoan.setRowHeight(35);
         jScrollPane5.setViewportView(tableLoan);
         if (tableLoan.getColumnModel().getColumnCount() > 0) {
             tableLoan.getColumnModel().getColumn(6).setHeaderValue("Status");
