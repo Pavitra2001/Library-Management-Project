@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class ReturnBook extends javax.swing.JFrame {
@@ -169,7 +168,7 @@ public class ReturnBook extends javax.swing.JFrame {
         jLabel15.setText("Book ID :");
         panel_main.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 190, 110, -1));
 
-        btnsearch.setBackground(new java.awt.Color(0, 102, 204));
+        btnsearch.setBackground(new java.awt.Color(255, 204, 0));
         btnsearch.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnsearch.setText("SEARCH");
         btnsearch.addActionListener(new java.awt.event.ActionListener() {
@@ -177,7 +176,7 @@ public class ReturnBook extends javax.swing.JFrame {
                 btnsearchActionPerformed(evt);
             }
         });
-        panel_main.add(btnsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1380, 380, 110, -1));
+        panel_main.add(btnsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 380, 120, 40));
 
         btnreturn.setBackground(new java.awt.Color(204, 204, 255));
         btnreturn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -242,7 +241,8 @@ public class ReturnBook extends javax.swing.JFrame {
                 DUEDATE.setText("");
             }
         } 
-        catch (HeadlessException | SQLException e) {
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }
     
@@ -260,7 +260,7 @@ public class ReturnBook extends javax.swing.JFrame {
             rs = ps.executeQuery();
             
             int rowCount = ps.executeUpdate();
-            if (rowCount >0){
+            if (rowCount >= 0){
                 isReturn = true;
             }else{
                 isReturn = false;
