@@ -372,8 +372,8 @@ public class ManageStudent extends javax.swing.JFrame {
         txtname.setText (model.getValueAt (rowNo, 1).toString());
         txtemail.setText (model.getValueAt (rowNo, 2).toString());
         comboSchool.setSelectedItem(model.getValueAt (rowNo, 3).toString());
-        comboYear.setSelectedItem(model.getValueAt (rowNo, 3).toString());
-        comboSem.setSelectedItem(model.getValueAt (rowNo, 3).toString());
+        comboYear.setSelectedItem(model.getValueAt (rowNo, 4).toString());
+        comboSem.setSelectedItem(model.getValueAt (rowNo, 5).toString());
     }//GEN-LAST:event_tableBookMouseClicked
 
     /**
