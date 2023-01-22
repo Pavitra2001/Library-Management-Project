@@ -1,468 +1,474 @@
 package library.management.system;
 
+import DAO.DatabaseHelper;
+import java.awt.Dimension;
+import java.awt.HeadlessException;
+import java.awt.Toolkit;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import java.text.SimpleDateFormat;  
+import java.sql.SQLException;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 public class IssueBook extends javax.swing.JFrame {
 
-    static Connection c;
-    static String ISBN, SID;
+    Connection con = null;
+    ResultSet rs = null;
+    PreparedStatement ps = null;
     
+    //create Issue Book Form Page
     public IssueBook() {
         initComponents();
-        setTitle("Library Management System");
-        setResizable(false);
-        setLocationRelativeTo(null);
-        
-        ISBN = "";
-        SID = "";
-        
-        jLabel20.setText( new SimpleDateFormat("dd / MM / yyyy").format(new Date()) );
-        
-        try{
-            Class.forName("com.mysql.jdbc.Driver");	   
-            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_management_system", "root", "root");
-        }
-        catch(Exception e){e.printStackTrace();}
+        con = DatabaseHelper.getConnection();
+        Toolkit toolkit = getToolkit();
+        Dimension size = toolkit.getScreenSize();
+        setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        panel_main = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        BTITLE = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        BQUANTITY = new javax.swing.JLabel();
+        BID = new javax.swing.JLabel();
+        BAUTHOR = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        SNAME = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        SSEM = new javax.swing.JLabel();
+        SID = new javax.swing.JLabel();
+        SSCHOOL = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        SYEAR = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        txtbid = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        txtsid = new javax.swing.JTextField();
+        Due_Date = new rojeru_san.componentes.RSDateChooser();
         jLabel15 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        Issue_Date = new rojeru_san.componentes.RSDateChooser();
+        btnissue = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Issue Book", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
+        panel_main.setBackground(new java.awt.Color(255, 255, 255));
+        panel_main.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton3.setText("BACK");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        jPanel1.setBackground(new java.awt.Color(255, 153, 0));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton4.setText("ISSUE BOOK");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Book Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
-
-        jLabel8.setText("---");
-
-        jLabel3.setText("Author");
-
-        jLabel1.setText("ISBN ");
-
-        jLabel7.setText("---");
-
-        jButton1.setText("Search");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("---");
-
-        jLabel2.setText("Title");
-
-        jLabel5.setText("Quantity");
-
-        jLabel4.setText("Price");
-
-        jLabel9.setText("---");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6))))
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel8))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel9))
-                .addContainerGap())
-        );
-
-        jLabel19.setText("Date");
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Student Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
-
-        jLabel10.setText("Name");
-
-        jLabel17.setText("---");
-
-        jLabel13.setText("Email");
-
-        jLabel18.setText("---");
-
-        jLabel12.setText("Branch");
-
-        jLabel16.setText("---");
-
-        jLabel11.setText("Course");
-
-        jLabel14.setText("Student ID");
-
-        jButton2.setText("Search");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jLabel15.setText("---");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Book Details");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, -1, -1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel13))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel15))
-                .addContainerGap(34, Short.MAX_VALUE))
+            .addGap(0, 360, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel11)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel12)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel13))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel16)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel17)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel18)))
-                .addContainerGap())
+            .addGap(0, 3, Short.MAX_VALUE)
         );
 
-        jLabel20.setText("current_date_here");
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 360, 3));
 
-        jButton5.setText("STATISTICS");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Quantity : ");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 130, 30));
+
+        BTITLE.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        BTITLE.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(BTITLE, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 440, 40));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Book Name :");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 130, 30));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Author :");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 130, 30));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Book ID :");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 130, 30));
+
+        BQUANTITY.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        BQUANTITY.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(BQUANTITY, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 510, 280, 30));
+
+        BID.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        BID.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(BID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 280, 30));
+
+        BAUTHOR.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        BAUTHOR.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(BAUTHOR, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 280, 30));
+
+        panel_main.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 830));
+
+        jPanel3.setBackground(new java.awt.Color(0, 51, 204));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 3, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 360, 3));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Semester : ");
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 130, 30));
+
+        SNAME.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        SNAME.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(SNAME, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 440, 40));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Student Name :");
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 160, 30));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("School :");
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 130, 30));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Student ID :");
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 130, 30));
+
+        SSEM.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        SSEM.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(SSEM, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 610, 250, 30));
+
+        SID.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        SID.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(SID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 280, 30));
+
+        SSCHOOL.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        SSCHOOL.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(SSCHOOL, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 430, 40));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Year : ");
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 130, 30));
+
+        SYEAR.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        SYEAR.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(SYEAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 510, 250, 30));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Student Details");
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, -1, -1));
+
+        panel_main.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 490, 830));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 102, 204));
+        jLabel3.setText("ISSUE BOOK");
+        panel_main.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 50, -1, -1));
+
+        jButton4.setBackground(new java.awt.Color(204, 204, 255));
+        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton4.setText("BACK");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jButton4ActionPerformed(evt);
             }
         });
+        panel_main.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 10, 90, 30));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel19)
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel20)
-                        .addGap(72, 72, 72))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton5)
-                        .addGap(35, 35, 35)
-                        .addComponent(jButton4)
-                        .addGap(35, 35, 35)
-                        .addComponent(jButton3)))
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel20))
-                .addGap(32, 32, 32)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addContainerGap())
-        );
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        jLabel13.setText("Student ID :");
+        panel_main.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 280, 150, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
-        );
+        txtbid.setBackground(new java.awt.Color(204, 204, 204));
+        txtbid.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        txtbid.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtbidFocusLost(evt);
+            }
+        });
+        panel_main.add(txtbid, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 170, 270, 40));
 
-        pack();
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        jLabel14.setText("Due Date :");
+        panel_main.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 520, 150, -1));
+
+        txtsid.setBackground(new java.awt.Color(204, 204, 204));
+        txtsid.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        txtsid.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtsidFocusLost(evt);
+            }
+        });
+        panel_main.add(txtsid, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 270, 270, 40));
+
+        Due_Date.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Due_Date.setPlaceholder("Select Due Date");
+        panel_main.add(Due_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 520, 270, -1));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        jLabel15.setText("Book ID :");
+        panel_main.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 180, 110, -1));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        jLabel16.setText("Issue Date :");
+        panel_main.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 420, 150, -1));
+
+        Issue_Date.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Issue_Date.setPlaceholder("Select Issue Date");
+        panel_main.add(Issue_Date, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 410, 270, -1));
+
+        btnissue.setBackground(new java.awt.Color(204, 204, 255));
+        btnissue.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnissue.setText("ISSUE DATE");
+        btnissue.setActionCommand("ISSUE DATE");
+        btnissue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnissueActionPerformed(evt);
+            }
+        });
+        panel_main.add(btnissue, new org.netbeans.lib.awtextra.AbsoluteConstraints(1300, 650, 180, 40));
+
+        getContentPane().add(panel_main, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1520, 830));
+
+        setSize(new java.awt.Dimension(1537, 835));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    
+    //method to get book details
+    public void getBookDetails(){
         
-        if ( jTextField2.getText().isEmpty() ){
-            jLabel15.setText( "---" );
-            jLabel16.setText( "---" );
-            jLabel17.setText( "---" );
-            jLabel18.setText( "---" );
-            JOptionPane.showMessageDialog(new JFrame(), "The fields cannot be left blank.", "Message" , JOptionPane.INFORMATION_MESSAGE);
-        }
-        else{
+        int bookID = Integer.parseInt(txtbid.getText());
+        
+        String sql = "select * from book where B_ID=?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, bookID);
+            rs = ps.executeQuery();
             
-            try{
-                ResultSet rs;
-                PreparedStatement ps = c.prepareStatement("select * from Student where SID = ?; ");
-                ps.setString(1,jTextField2.getText());
-                rs = ps.executeQuery();
+            if (rs.next()) {
+                String add1 = rs.getString("B_ID");
+                BID.setText(add1);
+
+                String add2 = rs.getString("B_NAME");
+                BTITLE.setText(add2);
+
+                String add3 = rs.getString("B_AUTHOR");
+                BAUTHOR.setText(add3);
+
+                String add4 = rs.getString("B_STOCK");
+                BQUANTITY.setText(add4);
+
+                rs.close();
+                ps.close();
+            } else {
+                JOptionPane.showMessageDialog(null, "Book is not found");
+            }
+        } catch (HeadlessException | SQLException e) {
+        }
+    }
+    
+    //method to get student details
+    public void getStudentDetails(){
+        
+        int studentID = Integer.parseInt(txtsid.getText());
+        
+        String sql = "select * from student where  S_ID=?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, studentID);
+            rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                String add1 = rs.getString("S_ID");
+                SID.setText(add1);
+
+                String add2 = rs.getString("S_NAME");
+                SNAME.setText(add2);
+
+                String add3 = rs.getString("S_SCHOOL");
+                SSCHOOL.setText(add3);
+
+                String add4 = rs.getString("S_YEAR");
+                SYEAR.setText(add4);
                 
-                while(true){
-                    if (rs.next()){
-                        SID = rs.getString("SID");
-                        jLabel15.setText( rs.getString("Name") );
-                        jLabel16.setText( rs.getString("Course") );
-                        jLabel17.setText( rs.getString("Branch") );
-                        jLabel18.setText( rs.getString("Email") );
-                        break;    
-                    }
-                    else{
-                        jLabel15.setText( "---" );
-                        jLabel16.setText( "---" );
-                        jLabel17.setText( "---" );
-                        jLabel18.setText( "---" );
-                        JOptionPane.showMessageDialog(new JFrame(), "Student Not Found in Database.", "Message" , JOptionPane.INFORMATION_MESSAGE);
-                        jTextField2.setText("");
-                        break;
-                    }
+                String add5 = rs.getString("S_SEM");
+                SSEM.setText(add5);
+
+                rs.close();
+                ps.close();
+            } else {
+                JOptionPane.showMessageDialog(null, "Student is not found");
+            }
+        } catch (HeadlessException | SQLException e) {
+        }
+    }
+    
+    //insert issue book details
+    public boolean issuebook(){
+        
+        boolean isIssued = false;
+        int studentID = Integer.parseInt(txtsid.getText());
+        int bookID = Integer.parseInt(txtbid.getText());
+        String bookName = BTITLE.getText();
+        String studentName = SNAME.getText();
+        
+        Date issueDate = Issue_Date.getDatoFecha();
+        Date dueDate = Due_Date.getDatoFecha();
+        
+        Long A = issueDate.getTime();
+        Long B = dueDate.getTime();
+        
+        java.sql.Date sissueDate = new java.sql.Date(A);
+        java.sql.Date sdueDate = new java.sql.Date(B);
+        
+        String sql = "insert into issuebook(B_ID, B_NAME, S_ID, S_NAME, ISSUE_DATE, DUE_DATE, STATUS)"
+                        + "values(?,?,?,?,?,?,?)";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, bookID);
+            ps.setString(2, bookName);
+            ps.setInt(3, studentID);
+            ps.setString(4, studentName);
+            ps.setDate(5, sissueDate);
+            ps.setDate(6, sdueDate);
+            ps.setString(7, "PENDING");
+            
+            int rowCount = ps.executeUpdate();
+            isIssued = rowCount > 0;
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return isIssued;
+    }
+    
+    public void updateBookCount(){
+        
+        int bookID = Integer.parseInt(txtbid.getText());
+        
+        String sql = "update book set B_STOCK = B_STOCK - 1 where B_ID = ?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, bookID);
+            
+            int rowCount = ps.executeUpdate();
+                if (rowCount > 0){
+                    JOptionPane.showMessageDialog(null, "Book Count Updated Successfully");
+                    int initialCount = Integer.parseInt(BQUANTITY.getText());
+                    BQUANTITY.setText(Integer.toString(initialCount - 1));
                 }
-           
-            } catch(Exception e) {e.printStackTrace();}
-            
+                else{
+                    JOptionPane.showMessageDialog(null, "Book Count Failed to Update");
+                }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
+    }
+    
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
-        if ( jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty() ){
-            JOptionPane.showMessageDialog(new JFrame(), "The fields cannot be left blank.", "Message" , JOptionPane.INFORMATION_MESSAGE);
-        }
-        else{
-            
-            try{
-            
-                String date = new SimpleDateFormat("yyMMdd").format(new Date());
-                
-                PreparedStatement ps = c.prepareStatement("insert into Record values(?,?,?,null); ");
-                ps.setString(1, SID);
-                ps.setString(2, ISBN);
-                ps.setString(3, date);
-                ps.execute();
-                
-                ps = c.prepareStatement("update Book set Quantity = Quantity-1 where ISBN = ?; ");
-                ps.setString(1, ISBN);
-                ps.execute();
-                
-                JOptionPane.showMessageDialog(new JFrame(), "Book Issued Successfully.", "Message" , JOptionPane.INFORMATION_MESSAGE);
-                
-            }
-            catch(Exception e) { 
-                e.printStackTrace(); 
-                JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Message" , JOptionPane.INFORMATION_MESSAGE);
-            }
-            
-            
-            
-        }
-        
-    }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
-        Home home = new Home();
+        Dashboard home = new Dashboard();
         home.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        if ( jTextField1.getText().isEmpty() ){
-            jLabel6.setText( "---" );
-            jLabel7.setText( "---" );
-            jLabel8.setText( "---" );
-            jLabel9.setText( "---" );
-            JOptionPane.showMessageDialog(new JFrame(), "The fields cannot be left blank.", "Message" , JOptionPane.INFORMATION_MESSAGE);
+    private void btnissueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnissueActionPerformed
+        if (issuebook() == true){
+            JOptionPane.showMessageDialog(null, "Book Issued Successfully");
+            updateBookCount();
+        } else {
+            JOptionPane.showMessageDialog(null, "Book Issue Failed");
         }
-        else{
-            
-            try{
-                ResultSet rs;
-                PreparedStatement ps = c.prepareStatement("select * from Book where ISBN = ?; ");
-                ps.setString(1,jTextField1.getText());
-                rs = ps.executeQuery();
+    }//GEN-LAST:event_btnissueActionPerformed
 
-                while(true){
-                    if (rs.next()){
-                        ISBN = rs.getString("ISBN");
-                        jLabel6.setText( rs.getString("Title") );
-                        jLabel7.setText( rs.getString("Author") );
-                        jLabel8.setText( rs.getString("Price") );
-                        jLabel9.setText( rs.getString("Quantity") );
-                        break;    
-                    }
-                    else{
-                        jLabel6.setText( "---" );
-                        jLabel7.setText( "---" );
-                        jLabel8.setText( "---" );
-                        jLabel9.setText( "---" );
-                        JOptionPane.showMessageDialog(new JFrame(), "Book Not Found in Database.", "Message" , JOptionPane.INFORMATION_MESSAGE);
-                        jTextField1.setText("");
-                        break;
-                    }
+    private void txtbidFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtbidFocusLost
+        getBookDetails();
+    }//GEN-LAST:event_txtbidFocusLost
+
+    private void txtsidFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtsidFocusLost
+        getStudentDetails();
+    }//GEN-LAST:event_txtsidFocusLost
+
+        public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
                 }
-           
-            } catch(Exception e) {e.printStackTrace();}
-           
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(IssueBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+        //</editor-fold>
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        
-        Record record = new Record();
-        record.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
-
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> {
+            new IssueBook().setVisible(true);
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel BAUTHOR;
+    private javax.swing.JLabel BID;
+    private javax.swing.JLabel BQUANTITY;
+    private javax.swing.JLabel BTITLE;
+    private rojeru_san.componentes.RSDateChooser Due_Date;
+    private rojeru_san.componentes.RSDateChooser Issue_Date;
+    private javax.swing.JLabel SID;
+    private javax.swing.JLabel SNAME;
+    private javax.swing.JLabel SSCHOOL;
+    private javax.swing.JLabel SSEM;
+    private javax.swing.JLabel SYEAR;
+    private javax.swing.JButton btnissue;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -471,11 +477,7 @@ public class IssueBook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -483,10 +485,12 @@ public class IssueBook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel panel_main;
+    private javax.swing.JTextField txtbid;
+    private javax.swing.JTextField txtsid;
     // End of variables declaration//GEN-END:variables
 }
