@@ -307,7 +307,7 @@ public class Forgot extends javax.swing.JFrame {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             if (rs.next()) {
-                txtname.setText(rs.getString(2));
+                txtname.setText(rs.getString(3));
                 txtsques.setText(rs.getString(4));
                 rs.close();
                 ps.close();
@@ -327,7 +327,7 @@ public class Forgot extends javax.swing.JFrame {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             if (rs.next()) {
-                txtpassword.setText(rs.getString(3));
+                txtpassword.setText(rs.getString(2));
 //                rs.close();
 //                ps.close();
             }else{
