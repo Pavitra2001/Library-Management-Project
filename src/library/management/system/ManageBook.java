@@ -143,7 +143,10 @@ public class ManageBook extends javax.swing.JFrame {
             }
         });
         tableBook.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tableBook.setFuenteFilas(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tableBook.setFuenteFilasSelect(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tableBook.setFuenteHead(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        tableBook.setRowHeight(35);
         tableBook.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableBookMouseClicked(evt);
@@ -406,13 +409,13 @@ public class ManageBook extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger( ManageBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
