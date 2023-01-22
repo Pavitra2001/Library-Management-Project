@@ -110,7 +110,7 @@ public final class Record extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(0, 102, 204));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton4.setBackground(new java.awt.Color(255, 0, 0));
+        jButton4.setBackground(new java.awt.Color(204, 204, 255));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton4.setText("BACK");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -118,7 +118,7 @@ public final class Record extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1430, 0, 90, 30));
+        jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 10, 90, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
